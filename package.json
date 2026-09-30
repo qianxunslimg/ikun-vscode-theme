@@ -1,0 +1,158 @@
+{
+  "name": "ikun-vscode-theme",
+  "displayName": "IKUN Club · 背带裤与篮球",
+  "description": "三套克制配色、篮球图标与离线动漫练习室，无大片背景。",
+  "version": "0.1.0",
+  "publisher": "qianxunslimg",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "keywords": [
+    "ikun",
+    "蔡徐坤",
+    "篮球",
+    "theme",
+    "dark",
+    "light"
+  ],
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#141416",
+    "theme": "dark"
+  },
+  "main": "./src/extension.js",
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "IKUN · 背带裤黑",
+        "uiTheme": "vs-dark",
+        "path": "./themes/suspenders-color-theme.json"
+      },
+      {
+        "label": "IKUN · 球场白",
+        "uiTheme": "vs",
+        "path": "./themes/court-color-theme.json"
+      },
+      {
+        "label": "IKUN · 舞台夜",
+        "uiTheme": "vs-dark",
+        "path": "./themes/stage-color-theme.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "ikun-file-icons",
+        "label": "IKUN · 球场文件图标",
+        "path": "./icons/ikun-icon-theme.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "ikun-product-icons",
+        "label": "IKUN · 唱跳 RAP 篮球",
+        "path": "./icons/ikun-product-icon-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "ikun.openClub",
+        "title": "IKUN: 打开练习室"
+      },
+      {
+        "command": "ikun.applyDaily",
+        "title": "IKUN: 启用日常套装"
+      },
+      {
+        "command": "ikun.applyStage",
+        "title": "IKUN: 启用整活套装"
+      },
+      {
+        "command": "ikun.restore",
+        "title": "IKUN: 恢复之前的外观"
+      },
+      {
+        "command": "ikun.importAudio",
+        "title": "IKUN: 导入本地音频"
+      },
+      {
+        "command": "ikun.importImage",
+        "title": "IKUN: 导入本地图片或 GIF"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ikun",
+          "title": "IKUN Club",
+          "icon": "media/basketball.svg"
+        }
+      ]
+    },
+    "views": {
+      "ikun": [
+        {
+          "type": "webview",
+          "id": "ikun.practice",
+          "name": "练习室"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "IKUN Club",
+      "properties": {
+        "ikun.mode": {
+          "type": "string",
+          "enum": [
+            "daily",
+            "stage"
+          ],
+          "default": "daily",
+          "description": "套装模式标记；两种模式的互动均需手动触发。"
+        },
+        "ikun.motion": {
+          "type": "boolean",
+          "default": true,
+          "description": "允许练习室动画，仍遵循系统减少动态效果偏好。"
+        },
+        "ikun.volume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.25,
+          "description": "练习室音量；声音仅在点击播放后开启。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check src/extension.js && node --check media/club.js && node scripts/validate.mjs",
+    "test": "node --test test/*.test.cjs",
+    "package": "npm run check && vsce package --no-dependencies --allow-missing-repository",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@phosphor-icons/core": "^2.1.1",
+    "@phosphor-icons/web": "^2.1.2",
+    "@vscode/vsce": "^3.6.0",
+    "playwright": "^1.56.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qianxunslimg/ikun-vscode-theme"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "iconDefinitions": {
+    "file": {
+      "iconPath": "./file.svg"
+    },
+    "folder": {
+      "iconPath": "./folder.svg"
+    },
+    "folder-open": {
+      "iconPath": "./folder-open.svg"
+    },
+    "root": {
+      "iconPath": "./root.svg"
+    },
+    "code": {
+      "iconPath": "./code.svg"
+    },
+    "js": {
+      "iconPath": "./js.svg"
+    },
+    "ts": {
+      "iconPath": "./ts.svg"
+    },
+    "jsx": {
+      "iconPath": "./jsx.svg"
+    },
+    "tsx": {
+      "iconPath": "./tsx.svg"
+    },
+    "python": {
+      "iconPath": "./python.svg"
+    },
+    "css": {
+      "iconPath": "./css.svg"
+    },
+    "html": {
+      "iconPath": "./html.svg"
+    },
+    "config": {
+      "iconPath": "./config.svg"
+    },
+    "data": {
+      "iconPath": "./data.svg"
+    },
+    "image": {
+      "iconPath": "./image.svg"
+    },
+    "audio": {
+      "iconPath": "./audio.svg"
+    },
+    "video": {
+      "iconPath": "./video.svg"
+    },
+    "markdown": {
+      "iconPath": "./markdown.svg"
+    },
+    "test": {
+      "iconPath": "./test.svg"
+    },
+    "lock": {
+      "iconPath": "./lock.svg"
+    },
+    "package": {
+      "iconPath": "./package.svg"
+    },
+    "git": {
+      "iconPath": "./git.svg"
+    },
+    "shirt": {
+      "iconPath": "./shirt.svg"
+    },
+    "docker": {
+      "iconPath": "./docker.svg"
+    },
+    "license": {
+      "iconPath": "./license.svg"
+    }
+  },
+  "file": "file",
+  "folder": "folder",
+  "folderExpanded": "folder-open",
+  "rootFolder": "root",
+  "rootFolderExpanded": "root",
+  "languageIds": {
+    "javascript": "js",
+    "typescript": "ts",
+    "javascriptreact": "jsx",
+    "typescriptreact": "tsx",
+    "python": "python",
+    "html": "html",
+    "css": "css",
+    "scss": "css",
+    "less": "css",
+    "json": "data",
+    "jsonc": "data",
+    "yaml": "config",
+    "toml": "config",
+    "markdown": "markdown",
+    "cpp": "code",
+    "c": "code",
+    "rust": "code",
+    "go": "code",
+    "java": "code",
+    "shellscript": "code",
+    "dockerfile": "docker",
+    "xml": "code",
+    "vue": "jsx",
+    "svelte": "jsx"
+  },
+  "fileExtensions": {
+    "js": "js",
+    "mjs": "js",
+    "cjs": "js",
+    "ts": "ts",
+    "tsx": "tsx",
+    "jsx": "jsx",
+    "py": "python",
+    "png": "image",
+    "jpg": "image",
+    "jpeg": "image",
+    "webp": "image",
+    "gif": "image",
+    "svg": "image",
+    "mp3": "audio",
+    "wav": "audio",
+    "ogg": "audio",
+    "mp4": "video",
+    "webm": "video",
+    "md": "markdown",
+    "csv": "data",
+    "sql": "data",
+    "lock": "lock"
+  },
+  "fileNames": {
+    "package.json": "package",
+    "package-lock.json": "lock",
+    ".gitignore": "git",
+    "LICENSE": "license",
+    "Dockerfile": "docker",
+    "docker-compose.yml": "docker"
+  },
+  "folderNames": {
+    "src": "shirt",
+    "test": "test",
+    "tests": "test",
+    "media": "image",
+    "assets": "image",
+    ".git": "git"
+  },
+  "folderNamesExpanded": {
+    "src": "shirt",
+    "test": "test",
+    "tests": "test",
+    "media": "image",
+    "assets": "image",
+    ".git": "git"
+  },
+  "light": {
+    "file": "file",
+    "folder": "folder",
+    "folderExpanded": "folder-open"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "fonts": [
+    {
+      "id": "ikun-phosphor",
+      "src": [
+        {
+          "path": "./phosphor.woff",
+          "format": "woff"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    }
+  ],
+  "iconDefinitions": {
+    "files": {
+      "fontCharacter": "\\e670",
+      "fontId": "ikun-phosphor"
+    },
+    "search": {
+      "fontCharacter": "\\e30c",
+      "fontId": "ikun-phosphor"
+    },
+    "source-control": {
+      "fontCharacter": "\\e278",
+      "fontId": "ikun-phosphor"
+    },
+    "debug-alt": {
+      "fontCharacter": "\\e724",
+      "fontId": "ikun-phosphor"
+    },
+    "extensions": {
+      "fontCharacter": "\\e464",
+      "fontId": "ikun-phosphor"
+    },
+    "settings": {
+      "fontCharacter": "\\e434",
+      "fontId": "ikun-phosphor"
+    },
+    "account": {
+      "fontCharacter": "\\e4c4",
+      "fontId": "ikun-phosphor"
+    },
+    "bell": {
+      "fontCharacter": "\\e0ce",
+      "fontId": "ikun-phosphor"
+    },
+    "terminal": {
+      "fontCharacter": "\\eae8",
+      "fontId": "ikun-phosphor"
+    },
+    "play": {
+      "fontCharacter": "\\e3d0",
+      "fontId": "ikun-phosphor"
+    },
+    "debug-start": {
+      "fontCharacter": "\\e3d0",
+      "fontId": "ikun-phosphor"
+    },
+    "debug-pause": {
+      "fontCharacter": "\\e39e",
+      "fontId": "ikun-phosphor"
+    },
+    "debug-stop": {
+      "fontCharacter": "\\e46c",
+      "fontId": "ikun-phosphor"
+    },
+    "color-mode": {
+      "fontCharacter": "\\e6c8",
+      "fontId": "ikun-phosphor"
+    },
+    "heart": {
+      "fontCharacter": "\\e2a8",
+      "fontId": "ikun-phosphor"
+    },
+    "star-full": {
+      "fontCharacter": "\\e46a",
+      "fontId": "ikun-phosphor"
+    },
+    "music": {
+      "fontCharacter": "\\e75c",
+      "fontId": "ikun-phosphor"
+    }
+  }
+}
