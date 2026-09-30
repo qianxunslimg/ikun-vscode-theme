@@ -5,6 +5,7 @@ const path = require('node:path');
 const {THEMES, FIELDS, colorValues, saveColors, resetColors} = require('./colors');
 const KEYS = ['colorTheme', 'iconTheme', 'productIconTheme'];
 function activate(context) {
+  require('./typing-effects').activateTyping(vscode,context);
   const views = new Set();
   let busy = false;
   let pending = Promise.resolve();
@@ -42,7 +43,8 @@ function activate(context) {
     const previous = context.globalState.get('previous') || {};
     const canRestore = key => Object.hasOwn(previous,key);
     const colors = colorValues(vscode, context.extensionPath, currentTheme);
-    const values = {CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), CHICKEN:icon('chicken'), DAILY:String(currentTheme === THEMES.daily[0]), LIGHT:String(currentTheme === THEMES.light[0]), STAGE:String(currentTheme === THEMES.stage[0]), THEME:currentTheme, RESTORE_ICONS_DISABLED:canRestore('iconTheme')||canRestore('productIconTheme')?'':'disabled', RESTORE_FILE_DISABLED:canRestore('iconTheme')?'':'disabled', RESTORE_PRODUCT_DISABLED:canRestore('productIconTheme')?'':'disabled', COLOR_DISABLED:colors?'':'disabled', COLOR_HINT:colors?'仅应用到当前这套配色。':'先选择上方的一套 IKUN 配色。'};
+    const typing = vscode.workspace.getConfiguration('ikun.typing');
+    const values = {TYPING_ENABLED:typing.get('enabled',true)?'关闭打字特效':'开启打字特效', TYPING_STYLE:typing.get('style','basketball'), TYPING_COLOR:typing.get('color','#F5AA70'), TYPING_INTENSITY:typing.get('intensity','subtle'), CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), CHICKEN:icon('chicken'), DAILY:String(currentTheme === THEMES.daily[0]), LIGHT:String(currentTheme === THEMES.light[0]), STAGE:String(currentTheme === THEMES.stage[0]), THEME:currentTheme, RESTORE_ICONS_DISABLED:canRestore('iconTheme')||canRestore('productIconTheme')?'':'disabled', RESTORE_FILE_DISABLED:canRestore('iconTheme')?'':'disabled', RESTORE_PRODUCT_DISABLED:canRestore('productIconTheme')?'':'disabled', COLOR_DISABLED:colors?'':'disabled', COLOR_HINT:colors?'仅应用到当前这套配色。':'先选择上方的一套 IKUN 配色。'};
     const rows = FIELDS.map(([id, label]) => {
       const value = colors?.[id] || '#808080';
       const hex = /^#[\da-f]{6}$/i.test(value) ? value : value.slice(0,7);
@@ -71,6 +73,12 @@ function activate(context) {
         await resetColors(vscode,context,message.theme);
       }
       else if (message.command === 'restore') {await resetColors(vscode,context); await restore();}
+      else if (message.command === 'toggleTyping') await vscode.commands.executeCommand('ikun.toggleTyping');
+      else if (message.command === 'saveTyping') {
+        if (!['basketball','chick','spark'].includes(message.style) || !['subtle','lively'].includes(message.intensity) || !/^#[\da-f]{6}$/i.test(message.color)) throw Error('打字特效配置无效。');
+        const c=vscode.workspace.getConfiguration('ikun.typing');
+        for (const key of ['style','color','intensity']) await c.update(key,message[key],true);
+      }
       else if (message.command === 'advancedColors') await vscode.commands.executeCommand('workbench.action.openSettings','workbench.colorCustomizations');
       for (const view of views) render(view.webview);
     } catch (e) { vscode.window.showErrorMessage(`IKUN: ${e.message}`); for (const view of views) view.webview.postMessage({type:'result',ok:false,message:e.message}); }
@@ -93,6 +101,6 @@ function activate(context) {
   context.subscriptions.push(vscode.window.registerWebviewViewProvider('ikun.practice',{resolveWebviewView:attach}));
   const refresh = () => {if (!busy) for (const view of views) render(view.webview);};
   context.subscriptions.push(vscode.window.onDidChangeActiveColorTheme(refresh));
-  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {if(e.affectsConfiguration('workbench') || e.affectsConfiguration('editor.tokenColorCustomizations') || e.affectsConfiguration('editor.semanticTokenColorCustomizations')) refresh();}));
+  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {if(e.affectsConfiguration('ikun.typing') || e.affectsConfiguration('workbench') || e.affectsConfiguration('editor.tokenColorCustomizations') || e.affectsConfiguration('editor.semanticTokenColorCustomizations')) refresh();}));
 }
 module.exports = { activate };

@@ -18,6 +18,17 @@
                 <p>唱 · 跳 · RAP · 篮球</p>
             </div>
         </header>
+        <section aria-labelledby="typing-title">
+            <h2 id="typing-title">打字特效</h2>
+            <p class="hint">在代码光标旁弹出，停笔即消失。独立于主题使用。</p>
+            <form id="typing" data-style="{{TYPING_STYLE}}" data-intensity="{{TYPING_INTENSITY}}">
+                <label class="color-row"><span>效果</span><select name="style" aria-label="打字效果"><option value="basketball">篮球弹跳</option><option value="chick">中分小鸡</option><option value="spark">轻盈火花</option></select></label>
+                <label class="color-row"><span>强度</span><select name="intensity" aria-label="特效强度"><option value="subtle">轻量</option><option value="lively">活跃</option></select></label>
+                <label class="color-row"><span>颜色</span><input type="color" name="color" value="{{TYPING_COLOR}}" aria-label="特效颜色"></label>
+                <div class="actions"><button class="primary" type="submit">保存特效</button><button type="button" data-command="toggleTyping">{{TYPING_ENABLED}}</button></div>
+            </form>
+            <p class="hint">支持代码编辑区；暂不支持 Codex 等聊天输入框。无声音、无屏幕震动。</p>
+        </section>
         <section aria-labelledby="appearance">
             <h2 id="appearance">今天穿哪套？</h2>
             <div class="themes">

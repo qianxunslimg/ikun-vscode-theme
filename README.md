@@ -6,6 +6,18 @@
 
 ![真实 VS Code 深色预览](docs/previews/workbench-dark.png)
 
+## 打字特效
+
+默认开启，独立于主题和图标运行。代码输入时，光标旁出现短暂的篮球、小鸡或火花；约半秒后消失，无声音、无屏幕震动。打开 **IKUN: 打开主题衣柜**，可切换效果、颜色、轻量 / 活跃强度。命令 **IKUN: 开关打字特效** 可随时关闭，**IKUN: 预览光标打字特效** 在当前代码光标处播放一次。
+
+![打字效果示意](docs/previews/typing-styles.png)
+
+仅支持 VS Code 代码编辑区，**不支持 Codex 等第三方聊天 Webview、终端、搜索框**。使用公开的文档变化与编辑器装饰接口，不注入其他扩展或修改 VS Code 安装文件。中文在上屏后触发，不监听候选框或系统键盘。
+
+删除、撤销、换行、多光标和大段粘贴不触发；公开 API 无法完全区分短粘贴、自动补全与输入，光标附近的小段插入也可能触发。`workbench.reduceMotion: "on"` 时暂停特效。没有输入内容记录或上传。
+
+设置项：`ikun.typing.enabled`、`ikun.typing.style`、`ikun.typing.color`、`ikun.typing.intensity`。
+
 ## 图标有梗，也有用
 
 - 文件夹采用暖橙色轮廓与深色背带；展开时前盖打开。源码、文档、测试目录各有不同标记。
@@ -29,7 +41,7 @@
 
 ## 安装与切换
 
-在扩展视图菜单选择 **从 VSIX 安装**，安装 `ikun-vscode-theme-0.3.0.vsix`。
+在扩展视图菜单选择 **从 VSIX 安装**，安装 `ikun-vscode-theme-0.4.0.vsix`。
 
 命令面板执行 **IKUN: 启用日常套装**，或 **IKUN: 打开主题衣柜** 选择配色。原来的 `ikun.openClub` 命令 ID 保持兼容。
 

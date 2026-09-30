@@ -2,6 +2,10 @@
   const vscode = typeof acquireVsCodeApi === 'function' ? acquireVsCodeApi() : {postMessage:message => window.dispatchEvent(new CustomEvent('ikun-command',{detail:message}))};
   const form = document.querySelector('#colors');
   const dirty = {};
+  const typing = document.querySelector('#typing');
+  typing.elements.style.value = typing.dataset.style || 'basketball';
+  typing.elements.intensity.value = typing.dataset.intensity || 'subtle';
+  typing.addEventListener('submit',event=>{event.preventDefault();send({command:'saveTyping',style:typing.elements.style.value,intensity:typing.elements.intensity.value,color:typing.elements.color.value});});
   function send(message) {
     vscode.postMessage(message);
     document.querySelector('#message').textContent = '正在应用…';

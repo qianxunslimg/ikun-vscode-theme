@@ -1,8 +1,8 @@
 {
   "name": "ikun-vscode-theme",
   "displayName": "IKUN Club · 背带裤与篮球",
-  "description": "中分小鸡、背带裤口袋、语言球衣和篮球终端。原创图标系统与三套离线配色。",
-  "version": "0.3.0",
+  "description": "篮球、小鸡与火花打字特效，独立图标和可定制配色。纯本地运行。",
+  "version": "0.4.0",
   "publisher": "qianxunslimg",
   "license": "MIT",
   "engines": {
@@ -99,6 +99,14 @@
       {
         "command": "ikun.restoreProductIcons",
         "title": "IKUN: 只恢复活动栏图标"
+      },
+      {
+        "command": "ikun.toggleTyping",
+        "title": "IKUN: 开关打字特效"
+      },
+      {
+        "command": "ikun.previewTyping",
+        "title": "IKUN: 预览光标打字特效"
       }
     ],
     "viewsContainers": {
@@ -118,16 +126,55 @@
           "name": "主题衣柜"
         }
       ]
+    },
+    "configuration": {
+      "title": "IKUN",
+      "properties": {
+        "ikun.typing.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "在代码编辑区显示打字特效。聊天 Webview 不支持。"
+        },
+        "ikun.typing.style": {
+          "type": "string",
+          "enum": [
+            "basketball",
+            "chick",
+            "spark"
+          ],
+          "enumDescriptions": [
+            "篮球弹跳",
+            "中分小鸡",
+            "轻盈火花"
+          ],
+          "default": "basketball"
+        },
+        "ikun.typing.color": {
+          "type": "string",
+          "default": "#F5AA70",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "特效颜色，六位 HEX。"
+        },
+        "ikun.typing.intensity": {
+          "type": "string",
+          "enum": [
+            "subtle",
+            "lively"
+          ],
+          "default": "subtle",
+          "description": "特效幅度与粒子数量。"
+        }
+      }
     }
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/extension.js && node --check src/colors.js && node --check media/club.js && node scripts/validate.mjs",
+    "check": "node --check src/extension.js && node --check src/colors.js && node --check src/typing-effects.js && node --check media/club.js && node scripts/validate.mjs",
     "test": "node --test test/*.test.cjs",
     "package": "npm run check && vsce package --no-dependencies --allow-missing-repository",
     "vscode:prepublish": "npm run build",
     "test:icons": "node scripts/icons-test.mjs",
-    "test:visual": "node scripts/icons-test.mjs && node scripts/preview-test.mjs && node scripts/icon-atlas.mjs"
+    "test:visual": "node scripts/icons-test.mjs && node scripts/preview-test.mjs && node scripts/icon-atlas.mjs && node scripts/typing-preview.mjs"
   },
   "devDependencies": {
     "@phosphor-icons/core": "^2.1.1",
@@ -138,5 +185,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/qianxunslimg/ikun-vscode-theme"
-  }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ]
 }
