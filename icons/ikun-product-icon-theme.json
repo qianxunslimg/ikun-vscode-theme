@@ -1,6 +1,17 @@
 {
   "fonts": [
     {
+      "id": "ikun-original",
+      "src": [
+        {
+          "path": "./ikun.woff",
+          "format": "woff"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    },
+    {
       "id": "ikun-phosphor",
       "src": [
         {
@@ -14,8 +25,8 @@
   ],
   "iconDefinitions": {
     "files": {
-      "fontCharacter": "\\e670",
-      "fontId": "ikun-phosphor"
+      "fontCharacter": "\\e001",
+      "fontId": "ikun-original"
     },
     "search": {
       "fontCharacter": "\\e30c",
@@ -26,8 +37,8 @@
       "fontId": "ikun-phosphor"
     },
     "debug-alt": {
-      "fontCharacter": "\\e724",
-      "fontId": "ikun-phosphor"
+      "fontCharacter": "\\e003",
+      "fontId": "ikun-original"
     },
     "extensions": {
       "fontCharacter": "\\e464",
@@ -38,8 +49,8 @@
       "fontId": "ikun-phosphor"
     },
     "account": {
-      "fontCharacter": "\\e4c4",
-      "fontId": "ikun-phosphor"
+      "fontCharacter": "\\e002",
+      "fontId": "ikun-original"
     },
     "bell": {
       "fontCharacter": "\\e0ce",

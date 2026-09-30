@@ -29,13 +29,15 @@ function activate(context) {
     await context.globalState.update('previous', undefined);
   };
   function render(webview) {
-    webview.options = { enableScripts:true, localResourceRoots:[vscode.Uri.joinPath(context.extensionUri,'media')] };
+    webview.options = { enableScripts:true, localResourceRoots:[vscode.Uri.joinPath(context.extensionUri,'media'),vscode.Uri.joinPath(context.extensionUri,'icons')] };
     const nonce = crypto.randomBytes(16).toString('hex');
     const media = name => webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri,'media',name)).toString();
     const escape = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const config = vscode.workspace.getConfiguration('ikun');
     let html = fs.readFileSync(path.join(context.extensionPath,'media/club.html'),'utf8');
-    const values = { CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), IMAGE:media('sticker.png'), MODE:config.get('mode','daily'), MOTION:String(config.get('motion',true)), VOLUME:String(config.get('volume',0.25)) };
+    const currentTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme');
+    const light = vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Light;
+    const icon = name => webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri,'icons',name+(light?'-light':'')+'.svg')).toString();
+    const values = { CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), CHICKEN:icon('chicken'), FOLDER:icon('folder'), TS:icon('ts'), SHELL:icon('shell'), IMAGE:icon('image'), DAILY:String(currentTheme === 'IKUN · 背带裤黑'), LIGHT:String(currentTheme === 'IKUN · 球场白'), STAGE:String(currentTheme === 'IKUN · 舞台夜') };
     html = html.replace(/\{\{(\w+)\}\}/g, (_,key) => escape(values[key] || ''));
     webview.html = html;
   }
@@ -45,7 +47,8 @@ function activate(context) {
     try {
       if (['daily','stage','light'].includes(message.command)) await update(message.command);
       else if (message.command === 'restore') await restore();
-    } catch (e) { vscode.window.showErrorMessage(`IKUN: ${e.message}`); }
+      for (const view of views) { render(view.webview); }
+    } catch (e) { vscode.window.showErrorMessage(`IKUN: ${e.message}`); for (const view of views) view.webview.postMessage({type:'result',ok:false,message:e.message}); }
     finally { busy = false; }
   }
   function attach(view) {
@@ -55,12 +58,13 @@ function activate(context) {
   }
   let panel;
   const commands = {
-    openClub:() => { if (panel) return panel.reveal(); panel = vscode.window.createWebviewPanel('ikun.club','IKUN · 练习室',vscode.ViewColumn.Active,{}); attach(panel); panel.onDidDispose(() => { panel=undefined; }); },
+    openClub:() => { if (panel) return panel.reveal(); panel = vscode.window.createWebviewPanel('ikun.club','IKUN · 主题衣柜',vscode.ViewColumn.Active,{}); attach(panel); panel.onDidDispose(() => { panel=undefined; }); },
     applyDaily:() => handle({command:'daily'}), applyStage:() => handle({command:'stage'}),
     restore:() => handle({command:'restore'})
   };
   for (const [key,fn] of Object.entries(commands)) context.subscriptions.push(vscode.commands.registerCommand('ikun.'+key,fn));
   context.subscriptions.push(vscode.window.registerWebviewViewProvider('ikun.practice',{resolveWebviewView:attach}));
-  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => { if(e.affectsConfiguration('ikun')) for(const view of views) render(view.webview); }));
+  context.subscriptions.push(vscode.window.onDidChangeActiveColorTheme(() => { for(const view of views) render(view.webview); }));
+  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => { if(e.affectsConfiguration('ikun') || e.affectsConfiguration('workbench.colorTheme')) for(const view of views) render(view.webview); }));
 }
 module.exports = { activate };

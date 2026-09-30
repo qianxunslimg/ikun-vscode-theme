@@ -13,6 +13,6 @@
 | [VS Code 主题能力](https://code.visualstudio.com/api/extension-capabilities/theming) | 颜色、文件图标、产品图标 | 三种官方贡献点 |
 | [Webview](https://code.visualstudio.com/api/extension-guides/webview) | 独立交互面板 | 本地资源、CSP、显式播放 |
 
-最终采用原创动漫小贴纸，不采用真人素材。首轮大幅主视觉因用户要求“不要大片背景”而弃用，不打包。贴纸生成提示见 THIRD_PARTY_NOTICES.md。
+0.2.0 改为统一的原创矢量图标系统，包含中分小鸡、背带裤口袋、语言球衣、篮球终端。早期大幅主视觉及动漫贴纸已弃用，不打包。源码与声明见 THIRD_PARTY_NOTICES.md。
 
 颜色主题只能提供颜色和语法样式，不能通过官方主题接口为编辑区任意铺设动态图。第一版不修改 VS Code 安装文件，不注入 workbench CSS。所有互动在练习室中完成。

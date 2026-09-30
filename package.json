@@ -1,8 +1,8 @@
 {
   "name": "ikun-vscode-theme",
   "displayName": "IKUN Club · 背带裤与篮球",
-  "description": "三套克制配色、篮球图标与离线动漫练习室，无大片背景。",
-  "version": "0.1.2",
+  "description": "中分小鸡、背带裤口袋、语言球衣和篮球终端。原创图标系统与三套离线配色。",
+  "version": "0.2.0",
   "publisher": "qianxunslimg",
   "license": "MIT",
   "engines": {
@@ -70,7 +70,7 @@
     "commands": [
       {
         "command": "ikun.openClub",
-        "title": "IKUN: 打开练习室"
+        "title": "IKUN: 打开主题衣柜"
       },
       {
         "command": "ikun.applyDaily",
@@ -99,7 +99,7 @@
         {
           "type": "webview",
           "id": "ikun.practice",
-          "name": "练习室"
+          "name": "主题衣柜"
         }
       ]
     },
@@ -114,18 +114,6 @@
           ],
           "default": "daily",
           "description": "套装模式标记；两种模式的互动均需手动触发。"
-        },
-        "ikun.motion": {
-          "type": "boolean",
-          "default": true,
-          "description": "允许练习室动画，仍遵循系统减少动态效果偏好。"
-        },
-        "ikun.volume": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "default": 0.25,
-          "description": "练习室音量；声音仅在点击播放后开启。"
         }
       }
     }
@@ -136,7 +124,8 @@
     "test": "node --test test/*.test.cjs",
     "package": "npm run check && vsce package --no-dependencies --allow-missing-repository",
     "vscode:prepublish": "npm run build",
-    "test:icons": "node scripts/icons-test.mjs"
+    "test:icons": "node scripts/icons-test.mjs",
+    "test:visual": "node scripts/icons-test.mjs && node scripts/preview-test.mjs && node scripts/icon-atlas.mjs"
   },
   "devDependencies": {
     "@phosphor-icons/core": "^2.1.1",

@@ -1,15 +1,20 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{CSP}}; media-src {{CSP}}; style-src {{CSP}}; script-src 'nonce-{{NONCE}}';">
-<link rel="stylesheet" href="{{CSS}}"><title>IKUN 练习室</title></head>
-<body data-mode="{{MODE}}" data-motion="{{MOTION}}" data-volume="{{VOLUME}}">
-<main><header><span class="brand">IKUN<span class="club"> / CLUB</span></span><span class="number">02½</span></header>
-<section class="intro"><div><h1>IKUN 主题</h1><p>黑白底色，篮球橙点缀。</p></div><img id="sticker" src="{{IMAGE}}" width="112" height="112" alt="银灰中分、黑白背带裤的动漫篮球练习生"></section>
-<section aria-labelledby="appearance"><h2 id="appearance">配色</h2><div class="themes">
-<button data-command="daily"><span class="swatch dark"></span><span>背带裤黑<small>日常 · 安静写代码</small></span></button>
-<button data-command="light"><span class="swatch light"></span><span>球场白<small>日常 · 清爽浅色</small></span></button>
-<button data-command="stage"><span class="swatch stage"></span><span>舞台夜<small>整活 · 一点点紫调</small></span></button>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{CSP}}; style-src {{CSP}}; script-src 'nonce-{{NONCE}}';">
+<link rel="stylesheet" href="{{CSS}}"><title>IKUN 主题衣柜</title></head>
+<body><main>
+<header><img id="sticker" src="{{CHICKEN}}" width="36" height="36" alt="中分背带裤小鸡"><div><h1>IKUN<span>CLUB</span></h1><p>唱 · 跳 · RAP · 篮球</p></div></header>
+<section aria-labelledby="appearance"><h2 id="appearance">今天穿哪套？</h2><div class="themes">
+<button data-command="daily" aria-pressed="{{DAILY}}"><span class="swatch dark"></span><span class="label">背带裤黑<small>炭黑 / 暖白 / 篮球橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
+<button data-command="light" aria-pressed="{{LIGHT}}"><span class="swatch light"></span><span class="label">球场白<small>纸白 / 石墨 / 焦糖橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
+<button data-command="stage" aria-pressed="{{STAGE}}"><span class="swatch stage"></span><span class="label">舞台夜<small>墨紫 / 银灰 / 柔橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
+</div><p class="hint">同时应用配色、文件图标和活动栏图标。</p></section>
+<section aria-labelledby="details"><h2 id="details">细节里，都是自己人。</h2><div class="samples">
+<div><img src="{{FOLDER}}" alt="背带裤口袋" width="24" height="24"><span>文件夹<small>背带裤口袋</small></span></div>
+<div><img src="{{TS}}" alt="TS 球衣" width="24" height="24"><span>代码<small>穿上语言球衣</small></span></div>
+<div><img src="{{SHELL}}" alt="篮球终端" width="24" height="24"><span>脚本<small>球到，开场</small></span></div>
+<div><img src="{{IMAGE}}" alt="小鸡拍立得" width="24" height="24"><span>图片<small>中分小鸡出镜</small></span></div>
 </div></section>
-<section aria-labelledby="practice"><h2 id="practice">互动 <span>手动播放</span></h2><div class="controls"><button id="bounce">运个球</button><button id="sound" aria-pressed="false">播放节拍</button></div><p id="message" role="status" aria-live="polite"></p><audio id="audio" preload="none" controls hidden></audio></section>
-<footer><button class="link" data-command="restore">恢复之前的外观</button><span>纯本地 · 无自动播放</span></footer></main>
-<script nonce="{{NONCE}}" src="{{JS}}"></script></body></html>
+<footer><button class="link" data-command="restore">恢复之前的外观</button><span>本地运行</span></footer>
+<p id="message" role="status" aria-live="polite"></p>
+</main><script nonce="{{NONCE}}" src="{{JS}}"></script></body></html>

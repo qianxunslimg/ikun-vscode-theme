@@ -6,3 +6,5 @@ test/**
 .vscode/**
 package-lock.json
 *.vsix
+
+assets/**
