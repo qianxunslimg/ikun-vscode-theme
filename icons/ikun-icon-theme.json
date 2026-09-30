@@ -292,8 +292,8 @@
   "file": "file",
   "folder": "folder",
   "folderExpanded": "folder-open",
-  "rootFolder": "root",
-  "rootFolderExpanded": "root",
+  "rootFolder": "folder",
+  "rootFolderExpanded": "folder-open",
   "languageIds": {
     "javascript": "js",
     "typescript": "ts",
@@ -333,6 +333,7 @@
     "makefile": "config"
   },
   "fileExtensions": {
+    "cmake": "config",
     "sh": "shell",
     "bash": "shell",
     "zsh": "shell",
@@ -474,8 +475,8 @@
     "file": "file-light",
     "folder": "folder-light",
     "folderExpanded": "folder-open-light",
-    "rootFolder": "root-light",
-    "rootFolderExpanded": "root-light",
+    "rootFolder": "folder-light",
+    "rootFolderExpanded": "folder-open-light",
     "languageIds": {
       "javascript": "js-light",
       "typescript": "ts-light",
@@ -515,6 +516,7 @@
       "makefile": "config-light"
     },
     "fileExtensions": {
+      "cmake": "config-light",
       "sh": "shell-light",
       "bash": "shell-light",
       "zsh": "shell-light",

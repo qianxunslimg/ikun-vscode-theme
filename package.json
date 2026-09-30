@@ -2,7 +2,7 @@
   "name": "ikun-vscode-theme",
   "displayName": "IKUN Club · 背带裤与篮球",
   "description": "中分小鸡、背带裤口袋、语言球衣和篮球终端。原创图标系统与三套离线配色。",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "qianxunslimg",
   "license": "MIT",
   "engines": {
@@ -83,6 +83,22 @@
       {
         "command": "ikun.restore",
         "title": "IKUN: 恢复之前的外观"
+      },
+      {
+        "command": "ikun.applyIcons",
+        "title": "IKUN: 启用 IKUN 图标"
+      },
+      {
+        "command": "ikun.restoreIcons",
+        "title": "IKUN: 仅恢复之前的图标"
+      },
+      {
+        "command": "ikun.restoreFileIcons",
+        "title": "IKUN: 只恢复文件图标"
+      },
+      {
+        "command": "ikun.restoreProductIcons",
+        "title": "IKUN: 只恢复活动栏图标"
       }
     ],
     "viewsContainers": {
@@ -102,25 +118,11 @@
           "name": "主题衣柜"
         }
       ]
-    },
-    "configuration": {
-      "title": "IKUN Club",
-      "properties": {
-        "ikun.mode": {
-          "type": "string",
-          "enum": [
-            "daily",
-            "stage"
-          ],
-          "default": "daily",
-          "description": "套装模式标记；两种模式的互动均需手动触发。"
-        }
-      }
     }
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/extension.js && node --check media/club.js && node scripts/validate.mjs",
+    "check": "node --check src/extension.js && node --check src/colors.js && node --check media/club.js && node scripts/validate.mjs",
     "test": "node --test test/*.test.cjs",
     "package": "npm run check && vsce package --no-dependencies --allow-missing-repository",
     "vscode:prepublish": "npm run build",

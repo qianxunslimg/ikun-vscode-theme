@@ -1,2 +1,20 @@
-const assert=require('node:assert/strict');const vscode=require('vscode');const fs=require('node:fs');
-exports.run=async()=>{const ext=vscode.extensions.getExtension('qianxunslimg.ikun-vscode-theme');assert.ok(ext);await ext.activate();await vscode.commands.executeCommand('ikun.applyDaily');assert.equal(vscode.workspace.getConfiguration('workbench').get('colorTheme'),'IKUN · 背带裤黑');await vscode.commands.executeCommand('ikun.applyStage');assert.equal(vscode.workspace.getConfiguration('workbench').get('colorTheme'),'IKUN · 舞台夜');await vscode.commands.executeCommand('ikun.openClub');await vscode.commands.executeCommand('ikun.restore');fs.writeFileSync('/tmp/ikun-host-result.json',JSON.stringify({passed:true,version:vscode.version,checks:['activation','daily bundle','stage bundle','webview creation','restore']}));};
+const assert=require('node:assert/strict');const vscode=require('vscode');const fs=require('node:fs');const path=require('node:path');
+exports.run=async()=>{
+ const ext=vscode.extensions.getExtension('qianxunslimg.ikun-vscode-theme');assert.ok(ext);await ext.activate();
+ const config=()=>vscode.workspace.getConfiguration('workbench');
+ const original={icon:config().inspect('iconTheme').globalValue,product:config().inspect('productIconTheme').globalValue};
+ await vscode.commands.executeCommand('ikun.applyDaily');assert.equal(config().get('colorTheme'),'IKUN · 背带裤黑');
+ await vscode.commands.executeCommand('ikun.restoreFileIcons');assert.equal(config().inspect('iconTheme').globalValue,original.icon);assert.equal(config().get('productIconTheme'),'ikun-product-icons');assert.equal(config().get('colorTheme'),'IKUN · 背带裤黑');
+ await vscode.commands.executeCommand('ikun.restoreProductIcons');assert.equal(config().inspect('productIconTheme').globalValue,original.product);
+ await vscode.commands.executeCommand('ikun.applyIcons');assert.equal(config().get('iconTheme'),'ikun-file-icons');
+ await vscode.commands.executeCommand('ikun.restoreIcons');assert.equal(config().inspect('iconTheme').globalValue,original.icon);assert.equal(config().get('colorTheme'),'IKUN · 背带裤黑');
+ const {saveColors,resetColors}=require(path.join(ext.extensionPath,'src/colors'));
+ const data=new Map();const context={globalState:{get:k=>data.get(k),update:async(k,v)=>data.set(k,v)}};
+ await saveColors(vscode,context,'IKUN · 背带裤黑',{background:'#112233',keywords:'#aabbcc'});
+ assert.equal(config().get('colorCustomizations')['[IKUN · 背带裤黑]']['editor.background'],'#112233');
+ assert.equal(vscode.workspace.getConfiguration('editor').get('semanticTokenColorCustomizations')['[IKUN · 背带裤黑]'].rules.keyword,'#aabbcc');
+ await resetColors(vscode,context,'IKUN · 背带裤黑');assert.equal(config().get('colorCustomizations')['[IKUN · 背带裤黑]'],undefined);
+ await vscode.commands.executeCommand('ikun.applyStage');assert.equal(config().get('colorTheme'),'IKUN · 舞台夜');
+ await vscode.commands.executeCommand('ikun.openClub');await vscode.commands.executeCommand('ikun.restore');
+ fs.writeFileSync('/tmp/ikun-host-v030-result.json',JSON.stringify({passed:true,version:vscode.version,extension:ext.packageJSON.version,checks:['activation','bundles','independent icon restores','theme-scoped custom colors','semantic highlighting','color reset','webview creation','restore']}));
+};

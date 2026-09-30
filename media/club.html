@@ -1,20 +1,63 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{CSP}}; style-src {{CSP}}; script-src 'nonce-{{NONCE}}';">
-<link rel="stylesheet" href="{{CSS}}"><title>IKUN 主题衣柜</title></head>
-<body><main>
-<header><img id="sticker" src="{{CHICKEN}}" width="36" height="36" alt="中分背带裤小鸡"><div><h1>IKUN<span>CLUB</span></h1><p>唱 · 跳 · RAP · 篮球</p></div></header>
-<section aria-labelledby="appearance"><h2 id="appearance">今天穿哪套？</h2><div class="themes">
-<button data-command="daily" aria-pressed="{{DAILY}}"><span class="swatch dark"></span><span class="label">背带裤黑<small>炭黑 / 暖白 / 篮球橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
-<button data-command="light" aria-pressed="{{LIGHT}}"><span class="swatch light"></span><span class="label">球场白<small>纸白 / 石墨 / 焦糖橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
-<button data-command="stage" aria-pressed="{{STAGE}}"><span class="swatch stage"></span><span class="label">舞台夜<small>墨紫 / 银灰 / 柔橙</small></span><span class="selected" aria-hidden="true">✓</span></button>
-</div><p class="hint">同时应用配色、文件图标和活动栏图标。</p></section>
-<section aria-labelledby="details"><h2 id="details">细节里，都是自己人。</h2><div class="samples">
-<div><img src="{{FOLDER}}" alt="背带裤口袋" width="24" height="24"><span>文件夹<small>背带裤口袋</small></span></div>
-<div><img src="{{TS}}" alt="TS 球衣" width="24" height="24"><span>代码<small>穿上语言球衣</small></span></div>
-<div><img src="{{SHELL}}" alt="篮球终端" width="24" height="24"><span>脚本<small>球到，开场</small></span></div>
-<div><img src="{{IMAGE}}" alt="小鸡拍立得" width="24" height="24"><span>图片<small>中分小鸡出镜</small></span></div>
-</div></section>
-<footer><button class="link" data-command="restore">恢复之前的外观</button><span>本地运行</span></footer>
-<p id="message" role="status" aria-live="polite"></p>
-</main><script nonce="{{NONCE}}" src="{{JS}}"></script></body></html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; img-src {{CSP}}; style-src {{CSP}}; script-src 'nonce-{{NONCE}}';">
+    <link rel="stylesheet" href="{{CSS}}">
+    <title>IKUN 主题衣柜</title>
+</head>
+
+<body>
+    <main>
+        <header><img id="sticker" src="{{CHICKEN}}" width="36" height="36" alt="中分背带裤小鸡">
+            <div>
+                <h1>IKUN<span>CLUB</span></h1>
+                <p>唱 · 跳 · RAP · 篮球</p>
+            </div>
+        </header>
+        <section aria-labelledby="appearance">
+            <h2 id="appearance">今天穿哪套？</h2>
+            <div class="themes">
+                <button data-command="theme" data-mode="daily" aria-pressed="{{DAILY}}"><span
+                        class="swatch dark"></span><span class="label">背带裤黑<small>炭黑 / 暖白 / 篮球橙</small></span><span
+                        class="selected" aria-hidden="true">✓</span></button>
+                <button data-command="theme" data-mode="light" aria-pressed="{{LIGHT}}"><span
+                        class="swatch light"></span><span class="label">球场白<small>纸白 / 石墨 / 焦糖橙</small></span><span
+                        class="selected" aria-hidden="true">✓</span></button>
+                <button data-command="theme" data-mode="stage" aria-pressed="{{STAGE}}"><span
+                        class="swatch stage"></span><span class="label">舞台夜<small>墨紫 / 银灰 / 柔橙</small></span><span
+                        class="selected" aria-hidden="true">✓</span></button>
+            </div>
+            <p class="hint">切换配色，保留当前图标。</p>
+        </section>
+        <section aria-labelledby="custom-colors">
+            <h2 id="custom-colors">自定义颜色</h2>
+            <p class="hint">{{COLOR_HINT}}</p>
+            <form id="colors" data-theme="{{THEME}}">
+                <fieldset {{COLOR_DISABLED}}>{{COLOR_ROWS}}
+                    <div class="actions"><button class="primary" type="submit">应用颜色</button><button type="button"
+                            data-command="resetColors">还原本套颜色</button></div>
+                </fieldset>
+            </form><button class="link advanced" data-command="advancedColors">更多颜色设置…</button>
+        </section>
+        <section aria-labelledby="icons">
+            <h2 id="icons">图标</h2>
+            <div class="icon-actions">
+                <button data-command="icons">启用 IKUN 图标</button>
+                <button data-command="restoreIcons" {{RESTORE_ICONS_DISABLED}}>仅恢复之前的图标</button>
+                <div class="split"><button class="link" data-command="restoreFileIcons"
+                        {{RESTORE_FILE_DISABLED}}>只恢复文件图标</button><button class="link"
+                        data-command="restoreProductIcons" {{RESTORE_PRODUCT_DISABLED}}>只恢复活动栏图标</button></div>
+            </div>
+            <p class="hint">启用时记住之前的图标，恢复时保留当前配色。</p>
+        </section>
+        <footer><button class="link" data-command="restore">恢复之前的全部外观</button></footer>
+        <p id="message" role="status" aria-live="polite"></p>
+    </main>
+    <script nonce="{{NONCE}}" src="{{JS}}"></script>
+</body>
+
+</html>
