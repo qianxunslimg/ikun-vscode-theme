@@ -179,11 +179,10 @@ const wrap = body => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32
 const chick = `<path d="M8 15C8 7 24 7 24 15V23C24 29 8 29 8 23Z" fill="#E9C36B" stroke="#7E5A22" stroke-width="1.2"/><path d="M7 14Q8 3 16 6Q24 3 25 14L19 11L16 7L13 11Z" fill="#B7B8C1" stroke="#56545F" stroke-width="1.2"/><circle cx="12" cy="18" r="1.3" fill="#252329"/><circle cx="20" cy="18" r="1.3" fill="#252329"/><path d="M14 20L18 20L16 23Z" fill="#C9682F"/><path d="M10 24L22 24L23 28L9 28Z" fill="#34323A"/><path d="M12 23V28M20 23V28" stroke="#F4EEE5" stroke-width="2"/>`;
 const ball = `<circle cx="16" cy="16" r="12" fill="#ECA05D" stroke="#74441F" stroke-width="1.5"/><path d="M4 16H28M16 4V28M8 7Q24 16 8 25M24 7Q8 16 24 25" fill="none" stroke="#74441F" stroke-width="1.4"/>`;
 save('icons/chicken.svg',wrap(chick));save('icons/root.svg',wrap(ball));
-for(const open of [false,true])save(`icons/folder${open?'-open':''}.svg`,wrap(`<path d="M3 8Q3 5 6 5H13L16 8H26Q29 8 29 11V26H3Z" fill="#79717E" stroke="#B5ACBA" stroke-width="1.2"/>${open?'<path d="M2 15H30L27 28H5Z" fill="#9D8F77"/>':''}<g transform="translate(6 5) scale(.65)">${chick}</g>`));
 const iconTheme=JSON.parse(readFileSync(path.join(root,'icons/ikun-icon-theme.json')));
 iconTheme.iconDefinitions.chicken={iconPath:'./chicken.svg'};
-iconTheme.folderNames={...iconTheme.folderNames,docs:'chicken',scripts:'shell',build:'root',dist:'root',public:'root'};
-iconTheme.folderNamesExpanded={...iconTheme.folderNamesExpanded,docs:'chicken',scripts:'shell',build:'root',dist:'root',public:'root'};
+iconTheme.folderNames={...iconTheme.folderNames,scripts:'shell',build:'root',dist:'root',public:'root'};
+iconTheme.folderNamesExpanded={...iconTheme.folderNamesExpanded,scripts:'shell',build:'root',dist:'root',public:'root'};
 save('icons/ikun-icon-theme.json',iconTheme);
 save('media/chicken.svg',wrap(chick));
 // Neutral activity-bar icon; fixed colors belong in the file icon theme.

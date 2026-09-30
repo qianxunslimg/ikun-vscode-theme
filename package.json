@@ -2,7 +2,7 @@
   "name": "ikun-vscode-theme",
   "displayName": "IKUN Club · 背带裤与篮球",
   "description": "三套克制配色、篮球图标与离线动漫练习室，无大片背景。",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "qianxunslimg",
   "license": "MIT",
   "engines": {
@@ -83,14 +83,6 @@
       {
         "command": "ikun.restore",
         "title": "IKUN: 恢复之前的外观"
-      },
-      {
-        "command": "ikun.importAudio",
-        "title": "IKUN: 导入本地音频"
-      },
-      {
-        "command": "ikun.importImage",
-        "title": "IKUN: 导入本地图片或 GIF"
       }
     ],
     "viewsContainers": {

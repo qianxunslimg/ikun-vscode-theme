@@ -3,14 +3,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{CSP}}; media-src {{CSP}}; style-src {{CSP}}; script-src 'nonce-{{NONCE}}';">
 <link rel="stylesheet" href="{{CSS}}"><title>IKUN 练习室</title></head>
 <body data-mode="{{MODE}}" data-motion="{{MOTION}}" data-volume="{{VOLUME}}">
-<main><header><span class="brand"><img class="chick-logo" src="{{CHICKEN}}" alt="背带裤小鸡"> IKUN<span class="club"> / CLUB</span></span><span class="number">02½</span></header>
-<section class="intro"><div><h1>认真写代码。<br><span>偶尔，练习一下。</span></h1><p>背带裤、篮球，还有一点小乐趣。</p></div><img id="sticker" src="{{IMAGE}}" width="112" height="112" alt="银灰中分、黑白背带裤的动漫篮球练习生"></section>
-<section aria-labelledby="appearance"><h2 id="appearance">穿搭</h2><div class="themes">
+<main><header><span class="brand">IKUN<span class="club"> / CLUB</span></span><span class="number">02½</span></header>
+<section class="intro"><div><h1>IKUN 主题</h1><p>黑白底色，篮球橙点缀。</p></div><img id="sticker" src="{{IMAGE}}" width="112" height="112" alt="银灰中分、黑白背带裤的动漫篮球练习生"></section>
+<section aria-labelledby="appearance"><h2 id="appearance">配色</h2><div class="themes">
 <button data-command="daily"><span class="swatch dark"></span><span>背带裤黑<small>日常 · 安静写代码</small></span></button>
 <button data-command="light"><span class="swatch light"></span><span>球场白<small>日常 · 清爽浅色</small></span></button>
 <button data-command="stage"><span class="swatch stage"></span><span>舞台夜<small>整活 · 一点点紫调</small></span></button>
 </div></section>
-<section aria-labelledby="practice"><h2 id="practice">课间练习 <span>点击才开始</span></h2><div class="controls"><button id="bounce">运个球</button><button id="chicken">小鸡上场</button><button id="sound" aria-pressed="false">播放节拍</button></div><div class="chicken-stage" hidden><img src="{{CHICKEN}}" alt="中分背带裤小鸡" width="56" height="56"><span>只因你太会写</span></div><p id="message" role="status" aria-live="polite">练习时长两年半，休息一下也没关系。</p><audio id="audio" src="{{AUDIO}}" preload="none" controls hidden></audio></section>
-<details><summary>自己的梗，自己带</summary><p>导入本地动漫 / 梗图，或 MP3、WAV、OGG。素材保存在本机。</p><div class="controls"><button data-command="image">导入图片 / GIF</button><button data-command="audio">导入音频</button><button data-command="resetMedia">恢复默认素材</button></div></details>
+<section aria-labelledby="practice"><h2 id="practice">互动 <span>手动播放</span></h2><div class="controls"><button id="bounce">运个球</button><button id="sound" aria-pressed="false">播放节拍</button></div><p id="message" role="status" aria-live="polite"></p><audio id="audio" preload="none" controls hidden></audio></section>
 <footer><button class="link" data-command="restore">恢复之前的外观</button><span>纯本地 · 无自动播放</span></footer></main>
 <script nonce="{{NONCE}}" src="{{JS}}"></script></body></html>

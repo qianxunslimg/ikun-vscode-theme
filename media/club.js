@@ -3,7 +3,6 @@
   document.querySelectorAll('[data-command]').forEach(button => button.addEventListener('click',() => vscode.postMessage({command:button.dataset.command})));
   const sticker=document.querySelector('#sticker'), message=document.querySelector('#message'), sound=document.querySelector('#sound'), audio=document.querySelector('#audio');
   let timer, context, beat, playing=false;
-  document.querySelector('#chicken').addEventListener('click',()=>{const stage=document.querySelector('.chicken-stage');stage.hidden=!stage.hidden;});
   const volume=Math.max(0,Math.min(1,Number(document.body.dataset.volume)||0));
   audio.volume=volume;
   if(audio.getAttribute('src')) { audio.hidden=false; sound.textContent='播放音频'; }
