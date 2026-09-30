@@ -2,7 +2,7 @@
   "name": "ikun-vscode-theme",
   "displayName": "IKUN Club · 背带裤与篮球",
   "description": "三套克制配色、篮球图标与离线动漫练习室，无大片背景。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "qianxunslimg",
   "license": "MIT",
   "engines": {
@@ -143,7 +143,8 @@
     "check": "node --check src/extension.js && node --check media/club.js && node scripts/validate.mjs",
     "test": "node --test test/*.test.cjs",
     "package": "npm run check && vsce package --no-dependencies --allow-missing-repository",
-    "vscode:prepublish": "npm run build"
+    "vscode:prepublish": "npm run build",
+    "test:icons": "node scripts/icons-test.mjs"
   },
   "devDependencies": {
     "@phosphor-icons/core": "^2.1.1",

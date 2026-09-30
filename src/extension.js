@@ -47,7 +47,7 @@ function activate(context) {
     const escape = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const config = vscode.workspace.getConfiguration('ikun');
     let html = fs.readFileSync(path.join(context.extensionPath,'media/club.html'),'utf8');
-    const values = { CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), IMAGE:custom('image') || media('sticker.png'), AUDIO:custom('audio'), MODE:config.get('mode','daily'), MOTION:String(config.get('motion',true)), VOLUME:String(config.get('volume',0.25)) };
+    const values = { CSP:webview.cspSource, NONCE:nonce, CSS:media('club.css'), JS:media('club.js'), CHICKEN:media('chicken.svg'), IMAGE:custom('image') || media('sticker.png'), AUDIO:custom('audio'), MODE:config.get('mode','daily'), MOTION:String(config.get('motion',true)), VOLUME:String(config.get('volume',0.25)) };
     html = html.replace(/\{\{(\w+)\}\}/g, (_,key) => escape(values[key] || ''));
     webview.html = html;
   }

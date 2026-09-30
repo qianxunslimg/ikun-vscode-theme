@@ -140,7 +140,7 @@ const icons = {
   file:['file','#A5A1AA'], folder:['folder','#F5AA70'], 'folder-open':['folder-open','#F5AA70'],
   root:['basketball','#F5AA70'], code:['code','#A9C9E8'], js:['file-js','#E2CA8F'],
   ts:['file-ts','#A9C9E8'], jsx:['file-jsx','#B6D5A0'], tsx:['file-tsx','#A9C9E8'],
-  python:['file-py','#E2CA8F'], css:['file-css','#D5B6E6'], html:['file-html','#F5AA70'],
+  python:['file-py','#E2CA8F'], shell:['terminal-window','#B6D5A0'], css:['file-css','#D5B6E6'], html:['file-html','#F5AA70'],
   config:['sliders-horizontal','#A5A1AA'], data:['brackets-curly','#E2CA8F'],
   image:['image','#D5B6E6'], audio:['microphone-stage','#F5AA70'], video:['film-strip','#D5B6E6'],
   markdown:['article','#A9C9E8'], test:['check-circle','#B6D5A0'], lock:['lock-key','#A5A1AA'],
@@ -149,13 +149,13 @@ const icons = {
 };
 for (const [name,[glyph,color]] of Object.entries(icons)) {
   const raw = readFileSync(path.join(root,`node_modules/@phosphor-icons/core/assets/regular/${glyph}.svg`),'utf8');
-  save(`icons/${name}.svg`,raw.replace('<svg ','<svg fill="'+color+'" '));
+  save(`icons/${name}.svg`,raw.replace('fill="currentColor"', 'fill="'+color+'"'));
   definitions[name] = { iconPath:`./${name}.svg` };
 }
-const languageIds = {javascript:'js',typescript:'ts',javascriptreact:'jsx',typescriptreact:'tsx',python:'python',html:'html',css:'css',scss:'css',less:'css',json:'data',jsonc:'data',yaml:'config',toml:'config',markdown:'markdown',cpp:'code',c:'code',rust:'code',go:'code',java:'code',shellscript:'code',dockerfile:'docker',xml:'code',vue:'jsx',svelte:'jsx'};
+const languageIds = {javascript:'js',typescript:'ts',javascriptreact:'jsx',typescriptreact:'tsx',python:'python',html:'html',css:'css',scss:'css',less:'css',json:'data',jsonc:'data',yaml:'config',toml:'config',markdown:'markdown',cpp:'code',c:'code',rust:'code',go:'code',java:'code',shellscript:'shell',dockerfile:'docker',xml:'code',vue:'jsx',svelte:'jsx'};
 save('icons/ikun-icon-theme.json', {iconDefinitions:definitions,file:'file',folder:'folder',folderExpanded:'folder-open',rootFolder:'root',rootFolderExpanded:'root',languageIds,
-  fileExtensions:{js:'js',mjs:'js',cjs:'js',ts:'ts',tsx:'tsx',jsx:'jsx',py:'python',png:'image',jpg:'image',jpeg:'image',webp:'image',gif:'image',svg:'image',mp3:'audio',wav:'audio',ogg:'audio',mp4:'video',webm:'video',md:'markdown',csv:'data',sql:'data',lock:'lock'},
-  fileNames:{'package.json':'package','package-lock.json':'lock','.gitignore':'git','LICENSE':'license','Dockerfile':'docker','docker-compose.yml':'docker'},
+  fileExtensions:{sh:'shell',bash:'shell',zsh:'shell',fish:'shell',ps1:'shell',bat:'shell',cmd:'shell',js:'js',mjs:'js',cjs:'js',ts:'ts',tsx:'tsx',jsx:'jsx',py:'python',png:'image',jpg:'image',jpeg:'image',webp:'image',gif:'image',svg:'image',mp3:'audio',wav:'audio',ogg:'audio',mp4:'video',webm:'video',md:'markdown',csv:'data',sql:'data',lock:'lock'},
+  fileNames:{'.bashrc':'shell','.zshrc':'shell','.bash_profile':'shell','.profile':'shell','package.json':'package','package-lock.json':'lock','.gitignore':'git','LICENSE':'license','Dockerfile':'docker','docker-compose.yml':'docker'},
   folderNames:{src:'shirt',test:'test',tests:'test',media:'image',assets:'image','.git':'git'},
   folderNamesExpanded:{src:'shirt',test:'test',tests:'test',media:'image',assets:'image','.git':'git'},
   light:{file:'file',folder:'folder',folderExpanded:'folder-open'} });
@@ -171,5 +171,20 @@ for (const [name,glyph] of Object.entries(glyphs)) {
 }
 save('icons/ikun-product-icon-theme.json',{fonts:[{id:'ikun-phosphor',src:[{path:'./phosphor.woff',format:'woff'}],weight:'normal',style:'normal'}],iconDefinitions:product});
 const basketball = readFileSync(path.join(root,'node_modules/@phosphor-icons/core/assets/regular/basketball.svg'),'utf8');
-save('media/basketball.svg', basketball.replace('<svg ','<svg fill="currentColor" '));
+save('media/basketball.svg', basketball);
 console.log('Generated 3 color themes, file icons, and product icons.');
+
+// Original code-native IKUN motifs, drawn on a 32px grid for Explorer readability.
+const wrap = body => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${body}</svg>`;
+const chick = `<path d="M8 15C8 7 24 7 24 15V23C24 29 8 29 8 23Z" fill="#E9C36B" stroke="#7E5A22" stroke-width="1.2"/><path d="M7 14Q8 3 16 6Q24 3 25 14L19 11L16 7L13 11Z" fill="#B7B8C1" stroke="#56545F" stroke-width="1.2"/><circle cx="12" cy="18" r="1.3" fill="#252329"/><circle cx="20" cy="18" r="1.3" fill="#252329"/><path d="M14 20L18 20L16 23Z" fill="#C9682F"/><path d="M10 24L22 24L23 28L9 28Z" fill="#34323A"/><path d="M12 23V28M20 23V28" stroke="#F4EEE5" stroke-width="2"/>`;
+const ball = `<circle cx="16" cy="16" r="12" fill="#ECA05D" stroke="#74441F" stroke-width="1.5"/><path d="M4 16H28M16 4V28M8 7Q24 16 8 25M24 7Q8 16 24 25" fill="none" stroke="#74441F" stroke-width="1.4"/>`;
+save('icons/chicken.svg',wrap(chick));save('icons/root.svg',wrap(ball));
+for(const open of [false,true])save(`icons/folder${open?'-open':''}.svg`,wrap(`<path d="M3 8Q3 5 6 5H13L16 8H26Q29 8 29 11V26H3Z" fill="#79717E" stroke="#B5ACBA" stroke-width="1.2"/>${open?'<path d="M2 15H30L27 28H5Z" fill="#9D8F77"/>':''}<g transform="translate(6 5) scale(.65)">${chick}</g>`));
+const iconTheme=JSON.parse(readFileSync(path.join(root,'icons/ikun-icon-theme.json')));
+iconTheme.iconDefinitions.chicken={iconPath:'./chicken.svg'};
+iconTheme.folderNames={...iconTheme.folderNames,docs:'chicken',scripts:'shell',build:'root',dist:'root',public:'root'};
+iconTheme.folderNamesExpanded={...iconTheme.folderNamesExpanded,docs:'chicken',scripts:'shell',build:'root',dist:'root',public:'root'};
+save('icons/ikun-icon-theme.json',iconTheme);
+save('media/chicken.svg',wrap(chick));
+// Neutral activity-bar icon; fixed colors belong in the file icon theme.
+save('media/basketball.svg',basketball);

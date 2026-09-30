@@ -30,6 +30,9 @@
     "python": {
       "iconPath": "./python.svg"
     },
+    "shell": {
+      "iconPath": "./shell.svg"
+    },
     "css": {
       "iconPath": "./css.svg"
     },
@@ -74,6 +77,9 @@
     },
     "license": {
       "iconPath": "./license.svg"
+    },
+    "chicken": {
+      "iconPath": "./chicken.svg"
     }
   },
   "file": "file",
@@ -101,13 +107,20 @@
     "rust": "code",
     "go": "code",
     "java": "code",
-    "shellscript": "code",
+    "shellscript": "shell",
     "dockerfile": "docker",
     "xml": "code",
     "vue": "jsx",
     "svelte": "jsx"
   },
   "fileExtensions": {
+    "sh": "shell",
+    "bash": "shell",
+    "zsh": "shell",
+    "fish": "shell",
+    "ps1": "shell",
+    "bat": "shell",
+    "cmd": "shell",
     "js": "js",
     "mjs": "js",
     "cjs": "js",
@@ -132,6 +145,10 @@
     "lock": "lock"
   },
   "fileNames": {
+    ".bashrc": "shell",
+    ".zshrc": "shell",
+    ".bash_profile": "shell",
+    ".profile": "shell",
     "package.json": "package",
     "package-lock.json": "lock",
     ".gitignore": "git",
@@ -145,7 +162,12 @@
     "tests": "test",
     "media": "image",
     "assets": "image",
-    ".git": "git"
+    ".git": "git",
+    "docs": "chicken",
+    "scripts": "shell",
+    "build": "root",
+    "dist": "root",
+    "public": "root"
   },
   "folderNamesExpanded": {
     "src": "shirt",
@@ -153,7 +175,12 @@
     "tests": "test",
     "media": "image",
     "assets": "image",
-    ".git": "git"
+    ".git": "git",
+    "docs": "chicken",
+    "scripts": "shell",
+    "build": "root",
+    "dist": "root",
+    "public": "root"
   },
   "light": {
     "file": "file",

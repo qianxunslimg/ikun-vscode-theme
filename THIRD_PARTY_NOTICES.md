@@ -17,3 +17,7 @@ Generation brief: a compact full-body anime boy sticker, black shirt, white susp
 ## Sound
 
 The default drum pulse is synthesized locally using Web Audio. No third-party recordings or songs are bundled. User-imported media is stored locally and is not included in the repository or VSIX.
+
+## Original vector motifs
+
+The chicken, suspenders, basketball root and chicken folder SVG motifs are original code-native drawings distributed under this project's MIT license.
